@@ -1,0 +1,20 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: Mylocalagent
+
+- task: HCLAppScanOnCloud@2
+  inputs:
+    AppSecTestService: 'ASoCConnect'
+    applications: 'f5199746-677c-4270-8274-2d2791e26036'
+    scanname: 'DemoTest'
+    scantype: 'dynamic'
+    dynamicType: 'DAST'
+    scanURL: 'https://demo.testfire.net'
+    network: 'public'
